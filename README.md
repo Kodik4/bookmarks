@@ -4,7 +4,7 @@
 
 ## Database
 
-- PotgreSQL
+- PostgreSQL
 
 ## How to start app first time?
 
