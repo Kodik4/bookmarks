@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_05_070639) do
+ActiveRecord::Schema.define(version: 2019_02_05_071248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.bigint "domain_id"
+    t.string "name"
+    t.string "metadata_title"
+    t.text "metadata_description"
+    t.text "url"
+    t.string "url_shortcut"
+    t.index ["domain_id"], name: "index_bookmarks_on_domain_id"
+  end
+
+  create_table "domains", force: :cascade do |t|
+    t.string "name"
+  end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
@@ -40,4 +54,5 @@ ActiveRecord::Schema.define(version: 2019_02_05_070639) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  add_foreign_key "bookmarks", "domains"
 end
