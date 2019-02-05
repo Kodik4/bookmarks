@@ -26,7 +26,7 @@ class WebsiteMetadata
   end
 
   def find_title(website)
-    website.at_css('title')&.text
+    website.xpath('/html/head/title')&.text
   end
 
   def find_description(website)

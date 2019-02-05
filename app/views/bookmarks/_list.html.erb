@@ -1,0 +1,13 @@
+<div id='bookmark-list'>
+  <ul>
+    <% @bookmarks.each do |bookmark| %>
+      <li>
+        Name: <%= bookmark.metadata_title %><br/>
+        URL: <%= link_to bookmark.url_shortcut, bookmark.url, target: '_blank' %><br/>
+        Domain: <%= link_to bookmark.domain.name, controller: 'domains', action: 'show', id: bookmark.domain.id %><br/>
+        Tags: <%= bookmark.tag_list %>
+      </li>
+    <%end%>
+  </ul>
+  <%= will_paginate @bookmarks %>
+</div>
