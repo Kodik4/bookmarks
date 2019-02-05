@@ -12,11 +12,18 @@ class Bookmark < ApplicationRecord
   before_create :connect_with_domain, :set_metadata, :set_url_shortcut
 
   def self.search_by(words_string)
-    words_arr = words_string.split(/\s+/).map { |word| Bookmark.like_sanitize(word) }
+    # SO UGLY BUT IT WORK
+    words_arr = words_string.split(/\s+/)
+    sanitized_words_arr = words_arr.map { |word| Bookmark.like_sanitize(word) }
     arel_table = self.arel_table
-    self.joins(:tags, :domain).where(
-      arel_table[:name].matches_any(words_arr)
-      .or(arel_table[:url].matches_any(words_arr))
+    domains = Domain.arel_table
+
+    tagged_bookmark_ids = self.tagged_with(words_arr, any: true).pluck(:id).push(0)
+    self.joins(:domain).where(
+      arel_table[:name].matches_any(sanitized_words_arr)
+      .or(arel_table[:url].matches_any(sanitized_words_arr))
+      .or(domains[:name].matches_any(sanitized_words_arr))
+      .or(arel_table[:id].eq_any(tagged_bookmark_ids))
     )
   end
   
