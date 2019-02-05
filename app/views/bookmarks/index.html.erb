@@ -5,7 +5,7 @@
   <%= form_for @bookmark, url: { action: 'create' } do |f| %>
     URL: <%= f.text_field :url %>
     Tags: <%= f.text_field :tag_list %>
-    <%= submit_tag 'Create' %>
+    <%= submit_tag 'Create', class: 'create-btn' %>
   <%end%>
 </div>
 
@@ -15,7 +15,7 @@
     <%= text_field_tag :search %>
     <%= submit_tag 'Search', class: 'search-btn' %>
   <%end%>
-  <%= link_to 'Reset filters', controller: 'bookmarks', action: 'index', class: 'reset-filters-btn' %>
+  <%= link_to 'Reset search', bookmarks_path, controller: 'bookmarks', action: 'index', class: 'reset-search-btn' %>
 </div>
 
 <%= render 'list' %>

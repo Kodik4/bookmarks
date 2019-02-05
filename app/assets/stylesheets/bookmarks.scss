@@ -3,10 +3,39 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #bookmark-list {
-
   ul {
     li {
       margin-bottom: 15px;
     }
+  }
+  
+  a {
+    text-decoration: none;
+    color: #0086b3;
+  }
+}
+
+.search-btn, .create-btn {
+  background-color: #008000;
+  color: #ffffff;
+  font-weight: bold;
+  border: none;
+  padding: 3px;
+  cursor: pointer;
+}
+
+.reset-search-btn {
+  text-decoration: none;
+  color: #4d4d4d;
+}
+
+.pagination {
+  text-align: center;
+  padding-bottom: 20px;
+  color: #002e4d;
+  font-weight: bold;
+
+  .current {
+    color: #333333;
   }
 }
