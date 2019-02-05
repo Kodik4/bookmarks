@@ -5,7 +5,7 @@ class CreateBookmarks < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :metadata_title
       t.text :metadata_description
-      t.text :url
+      t.text :url, null: false
       t.string :url_shortcut
     end
   end
