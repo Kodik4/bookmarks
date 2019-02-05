@@ -1,6 +1,6 @@
 <h1>Domain</h1>
 
 <div id='domain-show'>
-  <%= @domain.name %>
-  <%= render 'bookmarks/list' %>
+  <h2><%= @domain.name %></h2>
+  <%= render 'bookmarks/list', show_domain: false %>
 </div>
